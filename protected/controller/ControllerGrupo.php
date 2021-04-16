@@ -6,17 +6,20 @@ class ControllerGrupo extends Controller
         parent::__construct($view, $conf, $var, $acc);
     }
     public function main()
+
     
     //La parte foreach se utilia cuando declaramos en la consulta {$txtGrupo}
     //Tambien es un tema de seguridad foreach
     {
     
+
         foreach ($this->var as $key => $value){
             
             $$key = $value;
         }
         $dominio = "grupo"; 
         // --> Agregar registro 
+
         // Primera forma de guardar un registro
         if(isset($cmdGuardar)){
             //$sql="INSERT INTO grupo (id,grupo) VALUE (0, '{$txtGrupo}')";
@@ -27,6 +30,7 @@ class ControllerGrupo extends Controller
                 "txtgrupo"=>$txtGrupo //Campo que se va actualizar
             );
             indexModel::bd($this->conf)->updateDominio($gru);
+
         }
 
         // --> Para borrar registro
@@ -40,11 +44,13 @@ class ControllerGrupo extends Controller
         if(isset($cmdEditar)){
             //$sql="UPDATE rol SET rol = '$txtRol' WHERE id = ".$idReg;
             //indexModel::bd($this->conf)->getSQL($sql);
+
             $gru= array(
                 "Dominio"=>"grupo", //Nombre de la tabla que se va actualizar
                 "txtgrupo"=>$txtGrupo //Campo que se va actualizar
             );
             indexModel::bd($this->conf)->updateDominio($gru,$idReg);
+
         }
 
         $this->data["dominio"] = $dominio ;
